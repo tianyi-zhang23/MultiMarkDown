@@ -9,7 +9,7 @@ public class Unit {
         this.languagesAndContent = new HashMap<>(languagesAndContent);
     }
 
-    public String makeString(List<String> languages)
+    public String makeString(List<String> languages) //create the final text that contains one or more languages. Any language that is not supported by this Unit will be ignored.
     {
         String finalString = "";
         Iterator<String> languagesIterator = languages.iterator();
@@ -23,24 +23,16 @@ public class Unit {
                     finalString +="/";
                 }
             }
+            else {
+                System.out.println("Warning: language "+i+" is ignored.");
+                if (finalString.length()>0)
+                    finalString = finalString.substring(0,finalString.length()-1);
+            }
         }
         return finalString;
     }
 
-    //for testing. to be deleted.
-    public static void main(String[] args)
-    {
-        HashMap<String,String> landC = new HashMap<>();
-        landC.put("en","Hello everyone");
-        landC.put("fr","Bonjour tout le monde");
-        Unit aUnit = new Unit(landC);
-        ArrayList<String> langs = new ArrayList<>();
-        langs.add("en");
-        langs.add("fr");
-        System.out.println(aUnit.makeString(langs));
 
-
-    }
 
 
 }
